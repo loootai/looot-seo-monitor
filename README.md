@@ -1,6 +1,17 @@
 # looot-seo-monitor
 
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/loootai/looot-seo-monitor)
+
 Checks where your domain ranks on Google for a list of keywords and writes a markdown report. It remembers past positions in a JSON file, so the next report shows what moved.
+
+## Install for agents
+
+```bash
+git clone https://github.com/loootai/looot-seo-monitor
+claude mcp add --transport http looot https://api.looot.ai/mcp
+```
+
+See also: [awesome-looot-use-cases](https://github.com/loootai/awesome-looot-use-cases) (copy-paste recipes) and [awesome-gtm](https://github.com/loootai/awesome-gtm) (open-source GTM tools).
 
 It uses [looot](https://looot.ai): one token and one prepaid balance for 2,500+ data API endpoints. Each keyword is one `job:google.serp.organic` run. looot picks the SERP provider, shows the price first, and charges $0 for a failed call. This repo is a template. Click "Use this template" on GitHub and change what you need.
 
