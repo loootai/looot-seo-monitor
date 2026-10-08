@@ -1,4 +1,8 @@
+<p align="center"><img src="assets/hero.png" alt="looot-seo-monitor: Track Google rankings in a markdown report" width="100%"></p>
+
 # looot-seo-monitor
+
+[![License](https://img.shields.io/github/license/loootai/looot-seo-monitor)](LICENSE) [![Release](https://img.shields.io/github/v/release/loootai/looot-seo-monitor)](https://github.com/loootai/looot-seo-monitor/releases) [![Docs](https://img.shields.io/badge/docs-docs.looot.ai-12A06A)](https://docs.looot.ai)
 
 [![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/loootai/looot-seo-monitor)
 
