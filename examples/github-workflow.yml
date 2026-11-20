@@ -1,0 +1,30 @@
+# Copy to .github/workflows/seo.yml in your own copy of this repo.
+# Add LOOOT_TOKEN under Settings > Secrets and variables > Actions.
+# Pin each action to a commit SHA in your repo.
+name: seo-monitor
+on:
+  schedule: [{ cron: "0 6 * * 1" }]   # Mondays 06:00 UTC
+  workflow_dispatch: {}
+permissions:
+  contents: write                      # to commit rankings.json back
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: >
+          python3 -m seo_monitor --domain example.com --keywords keywords.txt
+          --competitor rival.example --all --max-cost 0.50 --live
+        env:
+          LOOOT_TOKEN: ${{ secrets.LOOOT_TOKEN }}
+      - name: Keep the history in the repo
+        run: |
+          git config user.name "seo-monitor"
+          git config user.email "seo-monitor@example.com"   # any address; use your own
+          git add rankings.json
+          git commit -m "seo: weekly check" || echo "no change"
+          git push
+      - uses: actions/upload-artifact@v4
+        with: { name: seo-report, path: "report.*" }

@@ -1,7 +1,7 @@
 [project]
 name = "looot-seo-monitor"
-version = "0.1.0"
-description = "Check Google rankings for a domain through the looot API and write a markdown report."
+version = "0.2.0"
+description = "Google rank, AI Overview and ChatGPT visibility tracking on looot jobs. Price before the run, hard cap, HTML report, MCP server. Standard library only."
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }

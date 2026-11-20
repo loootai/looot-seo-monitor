@@ -1,3 +1,3 @@
-"""Check Google rankings for a domain through the looot API and write a markdown report."""
+"""Google rank, AI Overview and ChatGPT visibility for a domain through looot, with HTML and markdown reports."""
 
-__version__ = "0.1.0"
+__version__ = "0.2.0"
