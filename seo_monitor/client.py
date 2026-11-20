@@ -50,14 +50,23 @@ class Looot:
         """Free, needs a token with usage.read."""
         return self._request("GET", "/v1/balance")
 
-    def run_job(self, job: str, payload: Dict[str, Any], wait: int = 30) -> Dict[str, Any]:
-        """Paid. Runs job:<job>. The idempotency key is a hash of job and input, so a rerun never pays twice."""
-        digest = hashlib.sha256((job + json.dumps(payload, sort_keys=True)).encode()).hexdigest()[:32]
+    def run_job(
+        self, job: str, payload: Dict[str, Any], wait: int = 30, max_cost: Optional[float] = None, day: str = ""
+    ) -> Dict[str, Any]:
+        """Paid. Runs job:<job>. max_cost is passed as fallback.maxCostUsd, so looot refuses to spend more on this run.
+
+        The idempotency key hashes job, input and the day, so a rerun the same day replays the same run at no
+        charge, and next week's run is a new check.
+        """
+        digest = hashlib.sha256((day + job + json.dumps(payload, sort_keys=True)).encode()).hexdigest()[:32]
+        fallback: Dict[str, Any] = {"maxAttempts": 2}
+        if max_cost is not None:
+            fallback["maxCostUsd"] = round(max(max_cost, 0.0001), 6)
         body = {
             "endpointId": f"job:{job}",
             "input": payload,
             "idempotencyKey": f"seomon-{digest}",
-            "fallback": True,
+            "fallback": fallback,
         }
         return self._request("POST", "/v1/runs", params={"wait": wait}, body=body)
 
