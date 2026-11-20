@@ -1,6 +1,6 @@
 # looot-seo-monitor
 
-> Check Google rankings for keywords through looot and write a markdown report. Dry run by default. Python, no dependencies.
+> Track Google rank, Google AI Overview and ChatGPT visibility for a keyword list through looot. Free price quote by default, hard cap per run, HTML and markdown reports, stdio MCP server. Python, no dependencies.
 
 looot is one key and one prepaid balance for 2,500+ data API endpoints from 90+ providers. The agent searches the catalog, sees the price before it runs, and pays per call.
 
@@ -8,6 +8,7 @@ looot is one key and one prepaid balance for 2,500+ data API endpoints from 90+ 
 
 - Remote MCP server: `claude mcp add --transport http looot https://api.looot.ai/mcp`
 - This repo: git clone https://github.com/loootai/looot-seo-monitor
+- This repo as an MCP server: `claude mcp add seo-monitor -e LOOOT_TOKEN=... -- python3 -m seo_monitor.mcp_server`
 
 ## Links
 
